@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
-import { SERVICES, PRODUCTS, TESTIMONIALS } from "@/lib/constants";
+import { SERVICES, INVENTORY, TESTIMONIALS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Star } from "lucide-react";
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {PRODUCTS.map((product, index) => (
+              {INVENTORY.slice(0, 4).map((product, index) => (
                 <ProductCard key={product.id} {...product} delay={index * 0.1} />
               ))}
             </div>

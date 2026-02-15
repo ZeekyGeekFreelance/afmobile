@@ -1,82 +1,141 @@
-import { Wrench, Smartphone, Battery, Shield, Wifi, Zap } from "lucide-react";
+import { Wrench, Smartphone, Battery, Shield, Wifi, Zap, Cable, Headphones, HardDrive, Smartphone as PhoneIcon, UserCheck } from "lucide-react";
+
+export const CATEGORIES = [
+  {
+    id: "accessories",
+    name: "Accessories",
+    subcategories: [
+      {
+        id: "charging",
+        name: "Charging & Power",
+        items: ["Charger", "Data Cable"]
+      },
+      {
+        id: "audio",
+        name: "Audio",
+        items: ["Bluetooth Headphones", "Earbuds"]
+      },
+      {
+        id: "storage",
+        name: "Storage Devices",
+        items: ["Memory Card", "Pendrive"]
+      },
+      {
+        id: "protection",
+        name: "Protection & Style",
+        items: ["Tempered Glass", "Back Covers", "Back Skin"]
+      }
+    ]
+  },
+  {
+    id: "services",
+    name: "Services",
+    subcategories: [
+      {
+        id: "network",
+        name: "Network (N/W) Issue",
+        items: ["Signal Repair", "Antenna Replacement"]
+      },
+      {
+        id: "power",
+        name: "Power On Problem",
+        items: ["Boot Loop Fix", "Battery Logic Repair"]
+      }
+    ]
+  },
+  {
+    id: "mobiles",
+    name: "Mobiles (Antique Pieces)",
+    subcategories: [
+      {
+        id: "feature-phones",
+        name: "Feature Phones",
+        items: ["Kechaoda", "Snexian Rocks"]
+      }
+    ]
+  }
+];
+
+export const INVENTORY = [
+  // Accessories
+  {
+    id: "acc-1",
+    name: "Fast Charger 20W",
+    description: "High-speed charging for all devices.",
+    price: "$25",
+    category: "Accessories",
+    subcategory: "Charging & Power",
+    image: "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: "acc-2",
+    name: "Braided Data Cable",
+    description: "Ultra-durable USB-C to Lightning.",
+    price: "$15",
+    category: "Accessories",
+    subcategory: "Charging & Power",
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: "acc-3",
+    name: "Pro Wireless Earbuds",
+    description: "Active noise cancellation and deep bass.",
+    price: "$129",
+    category: "Accessories",
+    subcategory: "Audio",
+    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: "acc-4",
+    name: "Premium Back Cover",
+    description: "Silicon soft-touch protection.",
+    price: "$19",
+    category: "Accessories",
+    subcategory: "Protection & Style",
+    image: "https://images.unsplash.com/photo-1610792516307-ea5acd3c3b00?auto=format&fit=crop&q=80&w=800",
+  },
+  // Mobiles
+  {
+    id: "mob-1",
+    name: "Kechaoda K115",
+    description: "Classic slim design, long battery life.",
+    price: "$45",
+    category: "Mobiles (Antique Pieces)",
+    subcategory: "Feature Phones",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    id: "mob-2",
+    name: "Snexian Rocks",
+    description: "Rugged build with powerful torch.",
+    price: "$39",
+    category: "Mobiles (Antique Pieces)",
+    subcategory: "Feature Phones",
+    image: "https://images.unsplash.com/photo-1520923179274-8397ed637a96?auto=format&fit=crop&q=80&w=800",
+  }
+];
 
 export const SERVICES = [
   {
     id: 1,
+    title: "Network (N/W) Issue",
+    description: "Expert troubleshooting for signal drops, no service, and poor connectivity.",
+    icon: Wifi,
+    price: "From $35",
+  },
+  {
+    id: 2,
+    title: "Power On Problem",
+    description: "Repair for dead devices, charging failures, and boot loop issues.",
+    icon: Zap,
+    price: "From $45",
+  },
+  {
+    id: 3,
     title: "Screen Repair",
-    description: "Premium OLED and LCD screen replacements for all major brands. Done in under 30 minutes.",
+    description: "Premium OLED and LCD screen replacements for all major brands.",
     icon: Smartphone,
     price: "From $89",
-  },
-  {
-    id: 2,
-    title: "Battery Replacement",
-    description: "Restore your device's battery health to 100% with genuine OEM parts.",
-    icon: Battery,
-    price: "From $49",
-  },
-  {
-    id: 3,
-    title: "Water Damage Recovery",
-    description: "Advanced ultrasonic cleaning and board-level repair to save liquid-damaged devices.",
-    icon: Wifi,
-    price: "From $59",
-  },
-  {
-    id: 4,
-    title: "Board Level Repair",
-    description: "Micro-soldering services for complex issues like charging ports, audio ICs, and backlight.",
-    icon: Wrench,
-    price: "Custom Quote",
-  },
-  {
-    id: 5,
-    title: "Data Recovery",
-    description: "Secure retrieval of photos, contacts, and files from damaged or non-booting devices.",
-    icon: Shield,
-    price: "From $99",
-  },
-  {
-    id: 6,
-    title: "Unlocking Services",
-    description: "Network unlocking and software flashing for supported devices.",
-    icon: Zap,
-    price: "From $29",
-  },
-];
-
-export const PRODUCTS = [
-  {
-    id: 1,
-    name: "iPhone 15 Pro Max",
-    description: "Titanium design, A17 Pro chip. 256GB - Natural Titanium.",
-    price: "$1,199",
-    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=800",
-    category: "New",
-  },
-  {
-    id: 2,
-    name: "Samsung S24 Ultra",
-    description: "Galaxy AI is here. 512GB - Titanium Grey.",
-    price: "$1,299",
-    image: "https://images.unsplash.com/photo-1706606995654-20f77242d50e?auto=format&fit=crop&q=80&w=800",
-    category: "New",
-  },
-  {
-    id: 3,
-    name: "MagSafe Charger",
-    description: "Fast wireless charging. Compatible with iPhone 12 and later.",
-    price: "$39",
-    image: "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?auto=format&fit=crop&q=80&w=800",
-    category: "Accessory",
-  },
-  {
-    id: 4,
-    name: "AirPods Pro (2nd Gen)",
-    description: "Active Noise Cancellation. USB-C Charging Case.",
-    price: "$249",
-    image: "https://images.unsplash.com/photo-1603351154351-5cf23309275b?auto=format&fit=crop&q=80&w=800",
-    category: "Audio",
   },
 ];
 
@@ -84,19 +143,13 @@ export const TESTIMONIALS = [
   {
     id: 1,
     name: "Sarah Jenkins",
-    text: "Fixed my shattered iPhone 14 screen in 20 minutes. Looks brand new! Highly recommended.",
+    text: "Fixed my signal issue in 20 minutes. Great service!",
     rating: 5,
   },
   {
     id: 2,
     name: "Mike Chen",
-    text: "Thought my phone was dead after dropping it in the pool. They saved all my photos!",
+    text: "Found a Kechaoda here for my collection. Rare find!",
     rating: 5,
-  },
-  {
-    id: 3,
-    name: "Jessica Alverez",
-    text: "Bought a refurbished MacBook here. Great price and works perfectly.",
-    rating: 4,
   },
 ];
