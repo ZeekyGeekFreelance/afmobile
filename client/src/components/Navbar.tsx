@@ -29,17 +29,13 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               <a
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === link.href ? "text-primary" : "text-muted-foreground"
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-primary ${location === link.href ? "text-primary" : "text-muted-foreground"
+                  }`}
               >
                 {link.label}
               </a>
             </Link>
           ))}
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-6">
-            Book Repair
-          </Button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -57,18 +53,14 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               <a
-                className={`text-lg font-medium p-2 rounded-md hover:bg-white/5 ${
-                  location === link.href ? "text-primary" : "text-muted-foreground"
-                }`}
+                className={`text-lg font-medium p-2 rounded-md hover:bg-white/5 ${location === link.href ? "text-primary" : "text-muted-foreground"
+                  }`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </a>
             </Link>
           ))}
-          <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-            Book Repair
-          </Button>
         </div>
       )}
     </nav>

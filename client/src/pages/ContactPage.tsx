@@ -17,7 +17,7 @@ export default function ContactPage() {
               <p className="text-xl text-muted-foreground mb-12">
                 Have a broken device? Looking for a quote? Fill out the form or visit our store today.
               </p>
-              
+
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
@@ -29,7 +29,7 @@ export default function ContactPage() {
                     <p className="text-muted-foreground">Silicon City, CA 90210</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
                     <Phone className="w-6 h-6" />
@@ -39,7 +39,7 @@ export default function ContactPage() {
                     <p className="text-muted-foreground">(555) 123-4567</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
                     <Mail className="w-6 h-6" />
@@ -61,16 +61,28 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+
+              <div className="mt-12 rounded-2xl overflow-hidden border border-white/10 h-64 shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.507640204439!3d37.757814996609724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
-            
+
             <div className="bg-card/30 p-8 rounded-2xl border border-white/5 backdrop-blur-sm">
               <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
               <ContactForm />
             </div>
           </div>
         </div>
-      </main>
+      </main >
       <Footer />
-    </div>
+    </div >
   );
 }

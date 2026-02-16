@@ -3,38 +3,111 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
-import { SERVICES, INVENTORY, TESTIMONIALS } from "@/lib/constants";
+import { TESTIMONIALS } from "@/lib/constants"; // Keeping static for now, or fetch if schema added
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Star } from "lucide-react";
 import showroomImage from "@/assets/showroom.png";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { client, urlFor } from "@/lib/sanity";
+import { useEffect, useState } from "react";
+
+// Types corresponding to Sanity schema
+interface Product {
+  _id: string;
+  name: string;
+  price: string;
+  description: string;
+  category: string;
+  subcategory: string;
+  images: any[];
+}
+
+interface Service {
+  _id: string;
+  title: string;
+  description: string;
+  price: string;
+  icon: string;
+}
 
 export default function Home() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: "start" }, [Autoplay({ delay: 3000 })]);
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsQuery = `*[_type == "product"] | order(_createdAt desc)[0...6]`;
+        const servicesQuery = `*[_type == "service"][0...3]`;
+
+        const [fetchedProducts, fetchedServices] = await Promise.all([
+          client.fetch(productsQuery),
+          client.fetch(servicesQuery)
+        ]);
+
+        setProducts(fetchedProducts);
+        setServices(fetchedServices);
+      } catch (error) {
+        console.error("Failed to fetch Sanity data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main>
         <Hero />
-        
+
         {/* Services Section */}
         <section className="py-24 bg-card/30 border-y border-white/5">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-white">
+              <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-white text-center">
                 Expert Services
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 From cracked screens to logic board repairs, our certified technicians handle it all with precision.
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {SERVICES.slice(0, 3).map((service, index) => (
-                <ServiceCard key={service.id} {...service} delay={index * 0.1} />
-              ))}
+              {loading ? (
+                // Simple Loading Skeleton
+                [1, 2, 3].map((i) => (
+                  <div key={i} className="h-64 bg-card animate-pulse rounded-xl" />
+                ))
+              ) : services.length > 0 ? (
+                services.map((service, index) => (
+                  <ServiceCard
+                    key={service._id}
+                    id={Number(index)} // Adapter for Card
+                    title={service.title}
+                    description={service.description}
+                    price={service.price}
+                    // For now passing raw icon string, ServiceCard might need update to handle dynamic icons or map them
+                    // Assuming for now we map common names or pass a generic if needed.
+                    // Ideally we'd map string -> LucideIcon component here.
+                    icon={undefined as any}
+                    delay={index * 0.1}
+                    issues={[]} // Not currently fetched in simplified query/schema view
+                  />
+                ))
+              ) : (
+                <p className="text-center col-span-full text-muted-foreground">Services coming soon...</p>
+              )}
             </div>
-            
+
             <div className="text-center mt-12">
               <Link href="/services">
                 <Button size="lg" variant="secondary" className="rounded-full">
@@ -44,42 +117,68 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
-        {/* Featured Products */}
+
+        {/* Featured Products Carousel */}
         <section className="py-24 relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-              <div>
-                <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-white">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 relative">
+              <div className="md:w-full">
+                <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4 text-white text-center md:text-left">
                   Latest Arrivals
                 </h2>
-                <p className="text-muted-foreground max-w-lg">
+                <p className="text-muted-foreground max-w-lg mx-auto md:mx-0 text-center md:text-left">
                   Shop certified pre-owned devices and premium accessories at unbeatable prices.
                 </p>
               </div>
+              <Link href="/products">
+                <Button variant="ghost" className="group hidden md:flex">
+                  Shop All <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex -ml-4">
+                {loading ? (
+                  [1, 2, 3].map((i) => (
+                    <div key={i} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4">
+                      <div className="h-96 bg-card animate-pulse rounded-xl" />
+                    </div>
+                  ))
+                ) : products.map((product) => (
+                  <div key={product._id} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4 min-w-0">
+                    <ProductCard
+                      name={product.name}
+                      description={product.description}
+                      price={product.price}
+                      category={product.category}
+                      images={product.images ? product.images.map(img => urlFor(img).url()) : []}
+                      delay={0}
+                      allowGallery={false}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 text-center md:hidden">
               <Link href="/products">
                 <Button variant="ghost" className="group">
                   Shop All <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </div>
-            
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {INVENTORY.slice(0, 4).map((product, index) => (
-                <ProductCard key={product.id} {...product} delay={index * 0.1} />
-              ))}
-            </div>
           </div>
         </section>
-        
+
         {/* Showroom / About Teaser */}
         <section className="py-24 bg-card border-y border-white/5">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1">
-                <img 
-                  src={showroomImage} 
-                  alt="Our Showroom" 
+                <img
+                  src={showroomImage}
+                  alt="Our Showroom"
                   className="rounded-2xl shadow-2xl border border-white/10 w-full"
                 />
               </div>
@@ -88,7 +187,7 @@ export default function Home() {
                   Visit Our Tech Hub
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Experience our premium showroom where technology meets style. 
+                  Experience our premium showroom where technology meets style.
                   Test the latest devices, get expert advice, and watch your repair happen in real-time through our open-lab window.
                 </p>
                 <div className="grid grid-cols-2 gap-6 pt-4">
@@ -105,7 +204,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Testimonials */}
         <section className="py-24">
           <div className="container mx-auto px-4">
@@ -128,7 +227,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

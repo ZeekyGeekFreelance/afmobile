@@ -14,11 +14,11 @@ export default function Footer() {
               </a>
             </Link>
             <p className="text-muted-foreground">
-              Your trusted partner for premium mobile repairs, sales, and accessories. 
+              Your trusted partner for premium mobile repairs, sales, and accessories.
               We bring technology back to life.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-bold text-lg mb-4 text-white">Services</h4>
             <ul className="space-y-2 text-muted-foreground">
@@ -28,17 +28,11 @@ export default function Footer() {
               <li><Link href="/services"><a className="hover:text-primary transition-colors">Data Recovery</a></Link></li>
             </ul>
           </div>
-          
-          <div>
-            <h4 className="font-bold text-lg mb-4 text-white">Company</h4>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><Link href="/"><a className="hover:text-primary transition-colors">About Us</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-primary transition-colors">Contact</a></Link></li>
-              <li><Link href="/products"><a className="hover:text-primary transition-colors">Shop</a></Link></li>
-              <li><Link href="/"><a className="hover:text-primary transition-colors">Careers</a></Link></li>
-            </ul>
-          </div>
-          
+
+
+          {/* Company section removed as requested */}
+
+
           <div>
             <h4 className="font-bold text-lg mb-4 text-white">Contact</h4>
             <ul className="space-y-4 text-muted-foreground">
@@ -57,7 +51,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} TechMobile. All rights reserved.

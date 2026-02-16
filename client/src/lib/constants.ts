@@ -65,7 +65,11 @@ export const INVENTORY = [
     price: "$25",
     category: "Accessories",
     subcategory: "Charging & Power",
-    image: "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?auto=format&fit=crop&q=80&w=800",
+    images: [
+      "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1585338447937-7082f8fc763d?auto=format&fit=crop&q=80&w=800"
+    ],
   },
   {
     id: "acc-2",
@@ -74,7 +78,12 @@ export const INVENTORY = [
     price: "$15",
     category: "Accessories",
     subcategory: "Charging & Power",
-    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+    images: [
+      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+
+    ],
   },
   {
     id: "acc-3",
@@ -83,7 +92,10 @@ export const INVENTORY = [
     price: "$129",
     category: "Accessories",
     subcategory: "Audio",
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=800",
+    images: [
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1572569028738-411a196cb27c?auto=format&fit=crop&q=80&w=800"
+    ],
   },
   {
     id: "acc-4",
@@ -92,7 +104,7 @@ export const INVENTORY = [
     price: "$19",
     category: "Accessories",
     subcategory: "Protection & Style",
-    image: "https://images.unsplash.com/photo-1610792516307-ea5acd3c3b00?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1610792516307-ea5acd3c3b00?auto=format&fit=crop&q=80&w=800"],
   },
   // Mobiles
   {
@@ -102,7 +114,7 @@ export const INVENTORY = [
     price: "$45",
     category: "Mobiles (Antique Pieces)",
     subcategory: "Feature Phones",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800"],
   },
   {
     id: "mob-2",
@@ -111,7 +123,26 @@ export const INVENTORY = [
     price: "$39",
     category: "Mobiles (Antique Pieces)",
     subcategory: "Feature Phones",
-    image: "https://images.unsplash.com/photo-1520923179274-8397ed637a96?auto=format&fit=crop&q=80&w=800",
+    images: ["https://images.unsplash.com/photo-1520923179274-8397ed637a96?auto=format&fit=crop&q=80&w=800"],
+  },
+  // Services (Products)
+  {
+    id: "srv-1",
+    name: "Advanced Signal Repair",
+    description: "Complete network diagnostics and antenna replacement.",
+    price: "$35",
+    category: "Services",
+    subcategory: "Network (N/W) Issue",
+    images: ["https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"],
+  },
+  {
+    id: "srv-2",
+    name: "Boot Loop Fix",
+    description: "Software and hardware recovery for devices stuck on boot.",
+    price: "$45",
+    category: "Services",
+    subcategory: "Power On Problem",
+    images: ["https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80&w=800"],
   }
 ];
 
@@ -122,6 +153,7 @@ export const SERVICES = [
     description: "Expert troubleshooting for signal drops, no service, and poor connectivity.",
     icon: Wifi,
     price: "From $35",
+    issues: ["Signal Drops", "No Service", "Weak WiFi", "Antenna Repair"],
   },
   {
     id: 2,
@@ -129,6 +161,7 @@ export const SERVICES = [
     description: "Repair for dead devices, charging failures, and boot loop issues.",
     icon: Zap,
     price: "From $45",
+    issues: ["Dead Device", "Not Charging", "Boot Loop", "Overheating"],
   },
   {
     id: 3,
@@ -136,6 +169,7 @@ export const SERVICES = [
     description: "Premium OLED and LCD screen replacements for all major brands.",
     icon: Smartphone,
     price: "From $89",
+    issues: ["Cracked Glass", "Touch Issue", "Dead Pixels", "Black Screen"],
   },
 ];
 

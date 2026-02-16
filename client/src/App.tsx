@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import ServicesPage from "@/pages/ServicesPage";
 import ProductsPage from "@/pages/ProductsPage";
 import ContactPage from "@/pages/ContactPage";
+import StudioPage from "@/pages/StudioPage";
 
 function Router() {
   return (
@@ -16,6 +17,8 @@ function Router() {
       <Route path="/services" component={ServicesPage} />
       <Route path="/products" component={ProductsPage} />
       <Route path="/contact" component={ContactPage} />
+      {/* Sanity Studio handles its own routing, so we match everything under /studio */}
+      <Route path="/studio/*?" component={StudioPage} />
       <Route component={NotFound} />
     </Switch>
   );
