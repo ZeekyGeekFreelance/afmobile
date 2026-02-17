@@ -46,7 +46,7 @@ export default function ProductCard({ name, description, price, images = [], cat
       viewport={{ once: true }}
     >
       <Card className="border-0 bg-transparent overflow-hidden group">
-        <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-muted/20 group/image">
+        <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-muted/20 group/image border border-white/10">
           <img
             src={effectiveImages[currentImageIndex]}
             alt={name}
@@ -56,18 +56,18 @@ export default function ProductCard({ name, description, price, images = [], cat
             {category}
           </Badge>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Visible on hover for desktop, potential for mobile refinement later */}
           {allowGallery && effectiveImages.length > 1 && (
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 opacity-0 group-hover/image:opacity-100 transition-opacity z-20"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 opacity-100 sm:opacity-0 sm:group-hover/image:opacity-100 transition-opacity z-20 backdrop-blur-sm"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 opacity-0 group-hover/image:opacity-100 transition-opacity z-20"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 opacity-100 sm:opacity-0 sm:group-hover/image:opacity-100 transition-opacity z-20 backdrop-blur-sm"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -77,7 +77,7 @@ export default function ProductCard({ name, description, price, images = [], cat
                 {effectiveImages.map((_, idx) => (
                   <div
                     key={idx}
-                    className={`w-1.5 h-1.5 rounded-full transition-colors ${idx === currentImageIndex ? "bg-white" : "bg-white/40"}`}
+                    className={`w-1.5 h-1.5 rounded-full transition-colors shadow-sm ${idx === currentImageIndex ? "bg-white" : "bg-white/40"}`}
                   />
                 ))}
               </div>
