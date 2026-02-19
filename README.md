@@ -1,6 +1,6 @@
 # Mobile Sales Portfolio
 
-Sales Portfolio web app built with React + Vite on the client and Express on the server, with Sanity Studio embedded at `/studio` for inventory/content management.
+Sales Portfolio web app built with React + Vite on the client and Express on the server, with Sanity Studio embedded at `/admin` for inventory/content management.
 
 ## Tech Stack
 - React 19 + Vite
@@ -41,14 +41,14 @@ npm run start
 ```
 
 ## Sanity Studio (Important)
-Sanity Studio is mounted inside this app at:
-- Local: `http://localhost:5000/studio`
-- Hosted: `${hostedlink}/studio`
+Admin Controls (Sanity Studio) is mounted inside this app at:
+- Local: `http://localhost:5000/admin`
+- Hosted: `${hostedlink}/admin`
 
 Use this Studio route to manage inventory items and content.
 
 If you need to make inventory changes, visit:
-- `${hostedlink}/studio`
+- `${hostedlink}/admin`
 
 ## Useful Scripts
 - `npm run dev` - run server + client in development mode
@@ -65,5 +65,5 @@ If you need to make inventory changes, visit:
 
 ## Notes
 - Sanity config is in `client/src/sanity.config.ts`.
-- Studio base path is `/studio`.
+- Studio base path is `/admin`.
 - Product/content schema files are in `client/src/schema/`.

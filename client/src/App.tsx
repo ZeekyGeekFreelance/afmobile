@@ -18,7 +18,7 @@ function Router() {
       <Route path="/products" component={ProductsPage} />
       <Route path="/contact" component={ContactPage} />
       {/* Sanity Studio handles its own routing, so we match everything under /studio */}
-      <Route path="/studio/*?" component={StudioPage} />
+      <Route path="/admin/*?" component={StudioPage} />
       <Route component={NotFound} />
     </Switch>
   );

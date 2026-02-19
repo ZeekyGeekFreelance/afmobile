@@ -7,7 +7,7 @@ export default defineConfig({
     title: "Sales Portfolio Admin",
     projectId: "a9zl3y8w",
     dataset: "production",
-    basePath: "/studio",
+    basePath: "/admin",
     plugins: [structureTool()],
     schema: {
         types: schemaTypes,
